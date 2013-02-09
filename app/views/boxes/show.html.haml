@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @box.name
+%p
+  %b Link:
+  = @box.link
+
+= link_to 'Edit', edit_box_path(@box)
+\|
+= link_to 'Back', boxes_path
