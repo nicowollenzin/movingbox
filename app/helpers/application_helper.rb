@@ -11,8 +11,5 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
-
-  def generate_qr(url,width)
-    "http://chart.apis.google.com/chart?cht=qr&chs=" + width.to_s + "x" + width.to_s + "&chl=" + url + "&chld=H|0"
-  end  
+ 
 end

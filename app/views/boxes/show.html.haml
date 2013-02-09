@@ -21,7 +21,7 @@
         %td= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' }
 
 %p
-  =image_tag(generate_qr(request.protocol + request.host_with_port + url_for(@box),250))
+  =image_tag(@box.qr_code.url)
 
 = link_to 'Edit', edit_box_path(@box)
 \|

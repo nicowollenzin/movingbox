@@ -3,4 +3,8 @@ class Box < ActiveRecord::Base
 
   has_many :things, :dependent => :destroy
   accepts_nested_attributes_for :things, :reject_if => lambda { |a| a[:desc].blank? }
+
+  image_accessor :qr_code
+
+
 end

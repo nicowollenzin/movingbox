@@ -45,6 +45,11 @@ class BoxesController < ApplicationController
 
     respond_to do |format|
       if @box.save
+        dest_url = url_for(:controller => 'boxes', :action => 'show', :id => @box.id ,:only_path => false)
+        puts "########### " + dest_url
+        qr_code_img = RQRCode::QRCode.new(dest_url, :size => 4, :level => :h ).to_img.resize(300, 300)
+
+        @box.update_attribute :qr_code, qr_code_img.to_string
         format.html { redirect_to @box, notice: 'Box was successfully created.' }
         format.json { render json: @box, status: :created, location: @box }
       else
