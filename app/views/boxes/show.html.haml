@@ -3,9 +3,25 @@
 %p
   %b Name:
   = @box.name
+
 %p
-  %b Link:
-  = @box.link
+  %table
+    %tr
+      %th Box
+      %th Desc
+      %th
+      %th
+      %th
+    - @box.things.each do |thing|
+      %tr
+        %td= thing.box_id
+        %td= thing.desc
+        %td= link_to 'Show', thing
+        %td= link_to 'Edit', edit_thing_path(thing)
+        %td= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' }
+
+%p
+  =image_tag(generate_qr(request.protocol + request.host_with_port + url_for(@box),250))
 
 = link_to 'Edit', edit_box_path(@box)
 \|

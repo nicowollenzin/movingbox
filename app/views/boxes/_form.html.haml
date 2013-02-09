@@ -11,11 +11,7 @@
     = f.text_field :name
   
   = f.fields_for :things do |builder|
-    %p.fields
-      = builder.label :desc, "Content"
-      = builder.text_field :desc, :rows => 3
-      = f.hidden_field :_destroy
-      = link_to_remove_fields "remove", f
+    = render 'things_fields', :f => builder
 
   %p
     = link_to_add_fields "Add thing", f, :things
