@@ -21,6 +21,16 @@ class BoxesController < ApplicationController
     end
   end
 
+  # GET /boxes/1/print
+  # GET /boxes/1/print.json
+  def print
+    @box = Box.find(params[:id])
+
+    respond_to do |format|
+      format.pdf { render :layout => false }
+    end
+  end
+
   # GET /boxes/new
   # GET /boxes/new.json
   def new

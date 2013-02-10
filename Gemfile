@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'haml-rails' # Optional - to generate haml
-
+gem 'prawn_rails'
 gem 'rqrcode_png'
 
 gem 'jquery-rails'
