@@ -1,27 +1,14 @@
-%p#notice= notice
+%h2= @box.name
 
 %p
-  %b Name:
-  = @box.name
-
-%p
-  %table
-    %tr
-      %th Box
-      %th Desc
-      %th
-      %th
-      %th
+  %h3 Contents
+  %ul
     - @box.things.each do |thing|
-      %tr
-        %td= thing.box_id
-        %td= thing.desc
-        %td= link_to 'Show', thing
-        %td= link_to 'Edit', edit_thing_path(thing)
-        %td= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' }
+      %li= thing.desc
 
 %p
-  =image_tag(@box.qr_code.url)
+  -if !@box.qr_code.nil?
+    =image_tag(@box.qr_code.url)
 
 = link_to 'Edit', edit_box_path(@box)
 \|

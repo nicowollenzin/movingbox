@@ -46,7 +46,6 @@ class BoxesController < ApplicationController
     respond_to do |format|
       if @box.save
         dest_url = url_for(:controller => 'boxes', :action => 'show', :id => @box.id ,:only_path => false)
-        puts "########### " + dest_url
         qr_code_img = RQRCode::QRCode.new(dest_url, :size => 4, :level => :h ).to_img.resize(300, 300)
 
         @box.update_attribute :qr_code, qr_code_img.to_string
@@ -64,6 +63,11 @@ class BoxesController < ApplicationController
   def update
     @box = Box.find(params[:id])
 
+    if @box.qr_code.nil?
+      dest_url = url_for(:controller => 'boxes', :action => 'show', :id => @box.id ,:only_path => false)
+      qr_code_img = RQRCode::QRCode.new(dest_url, :size => 4, :level => :h ).to_img.resize(300, 300)
+      @box.update_attribute :qr_code, qr_code_img.to_string
+    end
     respond_to do |format|
       if @box.update_attributes(params[:box])
         format.html { redirect_to @box, notice: 'Box was successfully updated.' }
